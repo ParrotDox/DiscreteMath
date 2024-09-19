@@ -1,0 +1,7 @@
+B:\C#\C#\DiscreteMath\Arrays\DiscreteMathLab1\obj\Debug\DiscreteMathLab1.csproj.AssemblyReference.cache
+B:\C#\C#\DiscreteMath\Arrays\DiscreteMathLab1\obj\Debug\DiscreteMathLab1.csproj.CoreCompileInputs.cache
+B:\C#\C#\DiscreteMath\Arrays\DiscreteMathLab1\bin\Debug\DiscreteMathLab1.exe.config
+B:\C#\C#\DiscreteMath\Arrays\DiscreteMathLab1\bin\Debug\DiscreteMathLab1.exe
+B:\C#\C#\DiscreteMath\Arrays\DiscreteMathLab1\bin\Debug\DiscreteMathLab1.pdb
+B:\C#\C#\DiscreteMath\Arrays\DiscreteMathLab1\obj\Debug\DiscreteMathLab1.exe
+B:\C#\C#\DiscreteMath\Arrays\DiscreteMathLab1\obj\Debug\DiscreteMathLab1.pdb
