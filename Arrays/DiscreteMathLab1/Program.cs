@@ -161,28 +161,280 @@ class SetList
         nodeCtr = 0;
         uniSet = new List<int>();
     }
-    public void createUniSet() 
+
+    private void checkInputX1X2(out int x1, out int x2) 
+    {
+        //Если значения приемлимы, то на выход идут x1 и x2
+        bool isRangeAcceptable = false;
+        do
+        {
+            Console.WriteLine("\nDefine the range of the uniset\n");
+            Console.Write("Start border(int):");
+            bool isX1Int = int.TryParse(Console.ReadLine(), out x1);
+            Console.Write("End border(int):");
+            bool isX2Int = int.TryParse(Console.ReadLine(), out x2);
+            //Проверка на правильность типа данных
+            isRangeAcceptable = isX1Int && isX2Int && x1 < x2;
+            if (!isRangeAcceptable)
+            {
+                Console.WriteLine("\nWrong type of input data or\ninput value is out of key range.\n");
+            }
+        }
+        while (!isRangeAcceptable);
+    }
+    private void checkInputRequestCreateUniset(out int request) 
+    {
+        /*
+         Проверка ввода пользователя для создания
+         универсального множества. На выход идет либо request = 1, либо request = 2
+         */
+        bool isRequestInt = false;
+        bool isRequestAcceptable = false;
+        Console.WriteLine("\nUniset already exists\n");
+        //Спрашиваем о выборе операции и проверяем корректность запроса
+        do
+        {
+            Console.WriteLine("Create new uniset (this operation deletes all created sets)?");
+            Console.WriteLine("1 - yes\n2 - no");
+            Console.Write("INPUT:");
+            isRequestInt = int.TryParse(Console.ReadLine(), out request);
+            isRequestAcceptable = isRequestInt && (request == 1 || request == 2) ? true : false;
+            if (!isRequestAcceptable)
+            {
+                Console.WriteLine("\nWrong type of input data or\ninput value is out of key range.\n");
+            }
+        }
+        while (!isRequestAcceptable);
+
+    }
+
+    private void checkInputRequestCreateCustomSet(out int request) 
+    {
+        bool isRequestInt = false;
+        bool isRequestAcceptable = false;
+        Console.WriteLine("\nCreate new set manually or randomly?\n");
+        //Спрашиваем о выборе создания множества и проверяем корректность типа данных ввода
+        do
+        {
+            Console.WriteLine("Create new set:");
+            Console.WriteLine("1 - manually\n2 - randomly");
+            Console.Write("INPUT:");
+            isRequestInt = int.TryParse(Console.ReadLine(), out request);
+            isRequestAcceptable = isRequestInt && (request == 1 || request == 2) ? true : false;
+            if (!isRequestAcceptable)
+            {
+                Console.WriteLine("\nWrong type of input data or\ninput value is out of key range.\n");
+            }
+        }
+        while (!isRequestAcceptable);
+    }
+
+    private void createCustomSetManualFill(out List<int> tempSetOut)
+    {
+        List<int> tempSet = new List<int>();
+        int uniqueObject;
+        bool isUniqueObjectInt = false;
+        bool isUniqueObjectStop = false;
+        bool isUniqueObjectAcceptable = false;
+
+        Console.WriteLine("Write in unique objects:");
+        //Заполняем множество уникальными элементами, проверяем ввод значений на корректность правильному типу данных
+        do
+        {
+            Console.Write($"Input a unique object, type integer, range from {uniSet[0]} to {uniSet[uniSet.Count() - 1]}\nor type 'stop' to end the operation:");
+            var uniqueObjectInput = Console.ReadLine();
+            isUniqueObjectInt = int.TryParse(uniqueObjectInput, out uniqueObject);
+            isUniqueObjectStop = uniqueObjectInput == "stop";
+            isUniqueObjectAcceptable = isUniqueObjectInt && uniqueObject >= uniSet[0] && uniqueObject <= uniSet[uniSet.Count() - 1] && !tempSet.Contains(uniqueObject);
+            if (isUniqueObjectStop)
+            {
+                Console.WriteLine("Stoping...");
+            }
+            else if (!isUniqueObjectAcceptable)
+            {
+                Console.WriteLine("\nWrong type of input data or\ninput value is out of range\n");
+            }
+            else
+            {
+                tempSet.Add(uniqueObject);
+            }
+        }
+        while ((!(tempSet.Count() == uniSet.Count()) || !isUniqueObjectInt) && !isUniqueObjectStop);
+        tempSetOut = tempSet;
+    }
+
+    private void createCustomSetRandomFill(out List<int> tempSetOut) 
+    {
+        List<int> tempSet = new List<int>();
+        Random rnd = new Random();
+        for (int i = 0; i < uniSet.Count() - rnd.Next(0, uniSet.Count() - 1); ++i)
+        {
+            int rndIntObject;
+            do
+            {
+                Random rndObject = new Random();
+                rndIntObject = rndObject.Next(uniSet[0], uniSet[uniSet.Count() - 1] + 1);
+            }
+            while (tempSet.Contains(rndIntObject));
+            tempSet.Add(rndIntObject);
+        }
+        tempSetOut = tempSet;
+
+    }
+
+    private void connectNode(char key, Node nextNode, List<int> tempSet, out Node tempNodeOut)
+    {
+        Node tempNode = new Node(key, nextNode, tempSet);
+        if (head == null)
+        {
+            head = tempNode;
+        }
+        else
+        {
+            Node current = head;
+            for (int i = 0; i < nodeCtr - 1; ++i)
+            {
+                current = head.nextNode;
+            }
+            current.nextNode = tempNode;
+        }
+        tempNodeOut = tempNode;
+        ++nodeCtr;
+    }
+    private void checkInputKey(out char key)
+    {
+        bool isInputChar = false;
+        bool isInputCharAcceptable = false;
+        bool isInputCharExists = false;
+
+        //Просим указать ключ к множеству и проверяем корректность типа данных ввода
+        do
+        {
+            Console.Write("Input the key-letter for the set (from A to Z):");
+            isInputChar = char.TryParse(Console.ReadLine(), out key);
+            isInputCharExists = false;
+
+            //Проверка на наличие такого идентификатора в множестве
+            Node current = head;
+            if (nodeCtr == 0)
+            {
+                isInputCharExists = false;
+            }
+            else
+            {
+                for (int i = 0; i <= nodeCtr - 1; ++i)
+                {
+                    if (current.key == key)
+                    {
+                        isInputCharExists = true;
+                        break;
+                    }
+                    current = current.nextNode;
+                }
+            }
+            isInputCharAcceptable = isInputChar && (key > '@' || key < '[') && !isInputCharExists;
+
+            if (!isInputCharAcceptable)
+            {
+                Console.WriteLine("\nWrong type of input data or\ninput value is out of range\nor the value already exists");
+            }
+        }
+        while (!isInputCharAcceptable);
+    }
+
+    public void checkValueToCheck(out int valueToCheck) 
+    {
+        bool isValueInt = false;
+        bool isValueAcceptable = false;
+
+        do
+        {
+            Console.Write("Input the value to find (integer):");
+            isValueInt = int.TryParse(Console.ReadLine(), out valueToCheck);
+
+            isValueAcceptable = isValueInt && valueToCheck >= uniSet[0] && valueToCheck <= uniSet[uniSet.Count() - 1];
+
+            if (!isValueAcceptable)
+            {
+                Console.WriteLine("\nWrong type of input data or the input value is out the range of values\n");
+            }
+        }
+        while (!isValueAcceptable);
+    }
+
+    public void checkInputKeyToFind(out char key)
+    {
+        bool isKeyChar = false;
+        bool isKeyInSet = false;
+        bool isKeyCharAcceptable = false;
+        Node current = head;
+
+        do
+        {
+            Console.Write("Input the key of set to find value:");
+            isKeyChar = char.TryParse(Console.ReadLine(), out key);
+
+            if (isKeyChar)
+            {
+                current = head;
+                for (int i = 1; i <= nodeCtr; ++i)
+                {
+                    if (current.key == key)
+                    {
+                        isKeyInSet = true;
+                        break;
+                    }
+                    current = current.nextNode;
+                }
+            }
+            if(isKeyChar == true && isKeyInSet == true) 
+            {
+                isKeyCharAcceptable = true;
+            }
+        }
+        while (!isKeyCharAcceptable);
+    }
+
+    public void checkIsInputKeyToFindInSet(char key, int valueToCheck) 
+    {
+        bool isKeyInSet = false;
+        Node current = head;
+        for (int i = 1; i <= nodeCtr; ++i)
+        {
+            if (current.key == key)
+            {
+                for(int j = 0; j < current.set.Count()-1; ++j) 
+                {
+                    if (current.set[j] == valueToCheck) 
+                    {
+                        isKeyInSet = true;
+                    }
+                }
+                break;
+            }
+            current = current.nextNode;
+        }
+
+        if (isKeyInSet) 
+        {
+            Console.WriteLine($"Value {valueToCheck} is in set {key}");
+        }
+        else 
+        {
+            Console.WriteLine($"Value {valueToCheck} is NOT in set {key}");
+        }
+            
+    }
+
+    
+    //2
+    public void createUniSet()
     {
         if (uniSet.Count() == 0)
         {
             int x1, x2;
-            bool isRangeAcceptable = false;
             //Проверяем корректность запроса
-            do
-            {
-                Console.WriteLine("\nDefine the range of the uniset\n");
-                Console.Write("Start border(int):");
-                bool isX1Int = int.TryParse(Console.ReadLine(), out x1);
-                Console.Write("End border(int):");
-                bool isX2Int = int.TryParse(Console.ReadLine(), out x2);
-                //Проверка на правильность типа данных
-                isRangeAcceptable = isX1Int && isX2Int && x1 < x2;
-                if (!isRangeAcceptable)
-                {
-                    Console.WriteLine("\nWrong type of input data or\ninput value is out of key range.\n");
-                }
-            }
-            while (!isRangeAcceptable);
+            checkInputX1X2(out x1, out x2);
 
             //Создание универсального множества
             for (int i = x1; i <= x2; ++i)
@@ -190,239 +442,74 @@ class SetList
                 uniSet.Add(i);
             }
         }
-        else 
+        else
         {
             int request;
-            bool isRequestInt = false;
-            bool isRequestAcceptable = false;
-            Console.WriteLine("\nUniset already exists\n");
-            //Спрашиваем о выборе операции и проверяем корректность запроса
-            do
-            {
-                Console.WriteLine("Create new uniset (this operation deletes all created sets)?");
-                Console.WriteLine("1 - yes\n2 - no");
-                Console.Write("INPUT:");
-                isRequestInt = int.TryParse(Console.ReadLine(), out request);
-                isRequestAcceptable = isRequestInt && (request == 1 || request == 2) ? true : false;
-                if (!isRequestAcceptable)
-                {
-                    Console.WriteLine("\nWrong type of input data or\ninput value is out of key range.\n");
-                }
-            }
-            while (!isRequestAcceptable);
+            checkInputRequestCreateUniset(out request);
 
-            if(request == 1) 
+            if (request == 1)
             {
                 this.clear();
             }
-            else if(request == 2)
+            else if (request == 2)
             {
                 return;
             }
         }
     }
-    public void createCustomSet() 
+    //3
+    public void createCustomSet()
     {
         //Проверяем, сколько множеств создал пользователь
-        if(nodeCtr == 5) 
+        if (nodeCtr == 5)
         {
             Console.WriteLine("\nQuantity of sets is at maximum value\n");
         }
-        else 
+        else
         {
             int request;
-            bool isRequestInt = false;
-            bool isRequestAcceptable = false;
-            Console.WriteLine("\nCreate new set manually or randomly?\n");
-            //Спрашиваем о выборе создания множества и проверяем корректность типа данных ввода
-            do
-            {
-                Console.WriteLine("Create new set:");
-                Console.WriteLine("1 - manually\n2 - randomly");
-                Console.Write("INPUT:");
-                isRequestInt = int.TryParse(Console.ReadLine(), out request);
-                isRequestAcceptable = isRequestInt && (request == 1 || request == 2) ? true : false;
-                if (!isRequestAcceptable)
-                {
-                    Console.WriteLine("\nWrong type of input data or\ninput value is out of key range.\n");
-                }
-            }
-            while (!isRequestAcceptable);
+            checkInputRequestCreateCustomSet(out request);
 
             //Проверяем, существует ли универсальное множество
-            if(uniSet.Count() == 0) 
+            if (uniSet.Count() == 0)
             {
                 Console.WriteLine("Uniset doesn't exists.\nCreate the uniset and try again");
             }
-            else 
+            else
             {
                 //Множество, которое будет заполнено
-                if(request == 1) 
+                if (request == 1)
                 {
                     char key;
-                    bool isInputChar = false;
-                    bool isInputCharAcceptable = false;
-                    bool isInputCharExists = false;
-                    
-                    //Просим указать ключ к множеству и проверяем корректность типа данных ввода
-                    do
-                    {
-                        Console.Write("Input the key-letter for the set (from A to Z):");
-                        isInputChar = char.TryParse(Console.ReadLine(), out key);
-                        isInputCharExists = false;
+                    checkInputKey(out key);
 
-                        //Проверка на наличие такого идентификатора в множестве
-                        Node current = head;
-                        if (nodeCtr == 0)
-                        {
-                            isInputCharExists = false;
-                        }
-                        else
-                        {
-                            for (int i = 0; i <= nodeCtr-1; ++i)
-                            {
-                                if (current.key == key)
-                                {
-                                    isInputCharExists = true;
-                                    break;
-                                }
-                                current = current.nextNode;
-                            }
-                        }
-                        isInputCharAcceptable = isInputChar && (key > '@' || key < '[') && !isInputCharExists;
-
-                        if (!isInputCharAcceptable) 
-                        {
-                            Console.WriteLine("\nWrong type of input data or\ninput value is out of range\nor the value already exists");
-                        }
-                    }
-                    while (!isInputCharAcceptable);
-
-                    List<int> tempSet = new List<int>();
-                    int uniqueObject;
-                    bool isUniqueObjectInt = false;
-                    bool isUniqueObjectStop = false;
-                    bool isUniqueObjectAcceptable = false;
-
-                    Console.WriteLine("Write in unique objects:");
-                    //Заполняем множество уникальными элементами, проверяем ввод значений на корректность правильному типу данных
-                    do
-                    {
-                        Console.Write($"Input a unique object, type integer, range from {uniSet[0]} to {uniSet[uniSet.Count()-1]}\nor type 'stop' to end the operation:");
-                        var uniqueObjectInput = Console.ReadLine();
-                        isUniqueObjectInt = int.TryParse(uniqueObjectInput, out uniqueObject);
-                        isUniqueObjectStop = uniqueObjectInput == "stop";
-                        isUniqueObjectAcceptable = isUniqueObjectInt && uniqueObject >= uniSet[0] && uniqueObject <= uniSet[uniSet.Count()-1] && !tempSet.Contains(uniqueObject);
-                        if (isUniqueObjectStop)
-                        {
-                            Console.WriteLine("Stoping...");
-                        }
-                        else if (!isUniqueObjectAcceptable) 
-                        {
-                            Console.WriteLine("\nWrong type of input data or\ninput value is out of range\n");
-                        }
-                        else 
-                        {
-                            tempSet.Add(uniqueObject);
-                        }
-                    }
-                    while ((!(tempSet.Count() == uniSet.Count()) || !isUniqueObjectInt) && !isUniqueObjectStop);
+                    //Заполняем множество ручным вводом
+                    List<int> tempSet;
+                    createCustomSetManualFill(out tempSet);
 
                     //Передаем параметры множества в объект класса Node, связываем его с другими множествами, если такие есть, через односвяз.список
                     tempSet.Sort();
-                    Node tempNode = new Node(key, null, tempSet);
-                    if(head == null) 
-                    {
-                        head = tempNode;
-                    }
-                    else 
-                    {
-                        Node current = head;
-                        for(int i = 0; i < nodeCtr-1; ++i) 
-                        {
-                            current = head.nextNode;
-                        }
-                        current.nextNode = tempNode;
-                    }
-                    ++nodeCtr;
+                    Node tempNode;
+                    connectNode(key, null, tempSet, out tempNode);
                 }
-                else if(request == 2)
+                else if (request == 2)
                 {
                     char key;
-                    bool isInputChar = false;
-                    bool isInputCharAcceptable = false;
-                    bool isInputCharExists = false;
-
-                    //Просим указать ключ к множеству и проверяем корректность типа данных ввода
-                    do
-                    {
-                        Console.Write("Input the key-letter for the set (from A to Z):");
-                        isInputChar = char.TryParse(Console.ReadLine(), out key);
-                        isInputCharExists = false;
-
-                        //Проверка на наличие такого идентификатора в множестве
-                        Node current = head;
-                        if (nodeCtr == 0)
-                        {
-                            isInputCharExists = false;
-                        }
-                        else
-                        {
-                            for (int i = 0; i <= nodeCtr - 1; ++i)
-                            {
-                                if (current.key == key)
-                                {
-                                    isInputCharExists = true;
-                                }
-                                current = current.nextNode;
-                            }
-                        }
-                        isInputCharAcceptable = isInputChar && (key > '@' || key < '[') && !isInputCharExists;
-
-                        if (!isInputCharAcceptable)
-                        {
-                            Console.WriteLine("\nWrong type of input data or\ninput value is out of range\nor the value already exists");
-                        }
-                    }
-                    while (!isInputCharAcceptable);
+                    checkInputKey(out key);
 
                     //Заполняем множество случайными элементами
                     List<int> tempSet = new List<int>();
-                    Random rnd = new Random();
-                    for(int i = 0; i < uniSet.Count() - rnd.Next(0,uniSet.Count()-1); ++i) 
-                    {
-                        int rndIntObject;
-                        do
-                        {
-                            Random rndObject = new Random();
-                            rndIntObject = rndObject.Next(uniSet[0], uniSet[uniSet.Count()-1]+1);
-                        }
-                        while (tempSet.Contains(rndIntObject));
-                        tempSet.Add(rndIntObject);
-                    }
+                    createCustomSetRandomFill(out tempSet);
 
                     //Передаем параметры множества в объект класса Node, связываем его с другими множествами, если такие есть, через односвяз.список
                     tempSet.Sort();
                     Node tempNode = new Node(key, null, tempSet);
-                    if (head == null)
-                    {
-                        head = tempNode;
-                    }
-                    else
-                    {
-                        Node current = head;
-                        for (int i = 0; i < nodeCtr - 1; ++i)
-                        {
-                            current = current.nextNode;
-                        }
-                        current.nextNode = tempNode;
-                    }
-                    ++nodeCtr;
+                    connectNode(key, null, tempSet, out tempNode);
                 }
             }
         }
     }
-
+    //4
     public void checkElement() 
     {
         if (nodeCtr == 0)
@@ -432,99 +519,27 @@ class SetList
         else
         {
 
-            Console.WriteLine("[LIST]");
-            Node current = head;
-            for (int i = 1; i <= nodeCtr; ++i)
-            {
-                Console.Write($"{i})key: {current.key}, set: ");
-                for (int elem = 0; elem < current.set.Count(); ++elem)
-                {
-                    Console.Write($"{current.set[elem]} ");
-                }
-                Console.Write("\n");
-                current = current.nextNode;
-            }
+            this.print();
 
             //Просим указать значение для поиска и проверяем корректность типа данных ввода
-            int value;
-            bool isValueInt = false;
-            bool isValueAcceptable = false;
+            int valueToCheck;
+            checkValueToCheck(out valueToCheck);
 
-            do
-            {
-                Console.Write("Input the value to find (integer):");
-                isValueInt = int.TryParse(Console.ReadLine(), out value);
-
-                isValueAcceptable = isValueInt && value >= uniSet[0] && value <= uniSet[uniSet.Count()-1];
-
-                if (!isValueAcceptable)
-                {
-                    Console.WriteLine("\nWrong type of input data or the input value is out the range of values\n");
-                }
-            }
-            while (!isValueAcceptable);
-
+            //Просим указать значение для поиска и проверяем корректность типа данных ввода
             char key;
-            bool isKeyChar = false;
-            bool isKeyInSet = false;
-            bool isValueInSet = false;
-            bool isKeyCharAcceptable = false;
+            checkInputKeyToFind(out key);
+            
+            //Проверяем есть ли в указанном множестве требуемое значение
+            checkIsInputKeyToFindInSet(key, valueToCheck);
 
-            do
-            {
-                Console.Write("Input the key of set to find value:");
-                isKeyChar = char.TryParse(Console.ReadLine(), out key);
-
-                if(isKeyChar) 
-                {
-                    current = head;
-                    for (int i = 1; i <= nodeCtr; ++i)
-                    {
-                        if(current.key == key) 
-                        {
-                            isKeyInSet = true;
-                            Console.Write($"{i})key: {current.key}, set: ");
-                            for (int elem = 0; elem < current.set.Count(); ++elem)
-                            {
-                                if (current.set[elem] == value) 
-                                {
-                                    isValueInSet = true;
-                                }
-                                Console.Write($"{current.set[elem]} ");
-                            }
-                            Console.Write("\n");
-                        }
-                        current = current.nextNode;
-                    }
-                }
-                else 
-                {
-                    isKeyCharAcceptable = false;
-                    Console.WriteLine("\nWrong type of input data\n");
-                    continue;
-                }
-                if (isKeyInSet) 
-                {
-                    if (isValueInSet)
-                    {
-                        Console.WriteLine($"Value:{value} is in {key} set");
-                        isKeyCharAcceptable = true;
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Value:{value} is not in {key} set");
-                        isKeyCharAcceptable = true;
-                    }
-                }
-                else 
-                {
-                    Console.WriteLine($"Set with key {key} doesn't exist");
-                }
-
-            }
-            while (!isKeyCharAcceptable);
         }
     }
+    //5
+    public void checkEntrance() 
+    {
+
+    }
+    //11
     public void print() 
     {
         if(uniSet.Count == 0) 
@@ -562,6 +577,9 @@ class SetList
             }
         }
     }
+
+
+
     public void clear() 
     {
         head = null;
