@@ -1022,48 +1022,55 @@ class SetList
     public void complement() 
     {
         List<int> complementSet = new List<int>();
-        this.print();
-        Console.Write("\nChoose set to find complement\n");
-        //Выбираем 1 множество по ключу
-        char key;
-        checkInputKeyToFind(out key);
-        Node set1Node;
-        getNodeLinkByKey(key, out set1Node);
-        //Если множество пустое, выводим универсум
-        Console.Write($"Result of complement of {key} set: ");
-        if (set1Node.set.Count() == 0) 
+        if(nodeCtr == 0) 
         {
-            for (int i = 0; i < uniSet.Count(); ++i) 
-            {
-                complementSet.Add(uniSet[i]);
-                Console.Write($"{uniSet[i]} ");
-            }
+            Console.WriteLine("\nNo sets have found\n");
         }
         else 
         {
-            //Заполнение результирующего множества универсумом
-            for (int i = 0; i < uniSet.Count(); ++i)
+            this.print();
+            Console.Write("\nChoose set to find complement\n");
+            //Выбираем 1 множество по ключу
+            char key;
+            checkInputKeyToFind(out key);
+            Node set1Node;
+            getNodeLinkByKey(key, out set1Node);
+            //Если множество пустое, выводим универсум
+            Console.Write($"Result of complement of {key} set: ");
+            if (set1Node.set.Count() == 0)
             {
-                complementSet.Add(uniSet[i]);
-            }
-            //Если в выбранном множестве есть эл., равные эл. в универсуме - удаляем их в результирующем множестве
-            for(int i = 0; i < set1Node.set.Count(); ++i) 
-            {
-                for(int j = 0; j < complementSet.Count(); ++j) 
+                for (int i = 0; i < uniSet.Count(); ++i)
                 {
-                    if (set1Node.set[i] == complementSet[j]) 
-                    {
-                        complementSet.Remove(set1Node.set[i]);
-                    }
+                    complementSet.Add(uniSet[i]);
+                    Console.Write($"{uniSet[i]} ");
                 }
             }
-            complementSet.Sort();
-            for (int i = 0; i < complementSet.Count(); ++i)
+            else
             {
-                Console.Write($"{complementSet[i]} ");
+                //Заполнение результирующего множества универсумом
+                for (int i = 0; i < uniSet.Count(); ++i)
+                {
+                    complementSet.Add(uniSet[i]);
+                }
+                //Если в выбранном множестве есть эл., равные эл. в универсуме - удаляем их в результирующем множестве
+                for (int i = 0; i < set1Node.set.Count(); ++i)
+                {
+                    for (int j = 0; j < complementSet.Count(); ++j)
+                    {
+                        if (set1Node.set[i] == complementSet[j])
+                        {
+                            complementSet.Remove(set1Node.set[i]);
+                        }
+                    }
+                }
+                complementSet.Sort();
+                for (int i = 0; i < complementSet.Count(); ++i)
+                {
+                    Console.Write($"{complementSet[i]} ");
+                }
+                Console.Write('\n');
             }
-            Console.Write('\n');
-        }
+        } 
     }
     //11
     public void print() 
