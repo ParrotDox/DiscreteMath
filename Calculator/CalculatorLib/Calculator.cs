@@ -1,4 +1,6 @@
-﻿namespace CalculatorLib
+﻿using System.Windows.Markup;
+
+namespace CalculatorLib
 {
     public class Calculator
     {
@@ -41,6 +43,39 @@
             variables = new List<char>(temp);
             return temp;
         }
+        public string GetPartialResult(string simpleEq) 
+        {
+            //Example of what we sent
+            //  0→1
+        }
+        public string GetRidOfBrackets(string eq) 
+        {
+            string eqTemp = eq;
+            while (eqTemp.Contains('(')) 
+            {
+                //Indexes of the deepest brackets "(" and ")"
+                int start = eq.LastIndexOf(')');
+                int end = eq.IndexOf('(', start);
+            }
+
+ 
+        }
+        public int GetTotalResult(string valuesOfVariables) 
+        {
+            string equationReplaced = equation;
+            //Replacing variables with their values
+            for(int i = 0; i < variables.Count; ++i) 
+            {
+                //Clearing equation from spacebars
+                equationReplaced.Replace(" ", "");
+                //Replace var with value (X is 0 | Y is 1 etc.)
+                equationReplaced.Replace(variables[i], valuesOfVariables[i]);
+            }
+            //Example of what we got
+            //  (1→0)~(0→0)
+            //Now we must get rid of brackets
+
+        }
         public string[,] InitTruthTable() 
         {
             //Method is used to create a truth table
@@ -75,12 +110,17 @@
                         string bStr = Convert.ToString(bCtr, 2);
                         temp[row, col] = bStr[col].ToString();
                     }
+                    //  filling results
                     if (row != 0 && col == columns - 1) 
                     {
-                        //ADD METHOD TO FIND RESULT
+                        string bStr = Convert.ToString(bCtr, 2);
+                        temp[row, col] = Convert.ToString(GetTotalResult(bStr));
                     }
+                    //Increment the byte value (000 -> 001 -> 010 -> 011 etc.)
+                    ++bCtr;
                 }
             }
+            return temp;
         }
         //*
         public string Conjunction() {}

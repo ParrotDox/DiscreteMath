@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "B:\\GIT\\C#-OOP-Discrete\\DiscreteMath\\Calculator\\CalculatorLib\\CalculatorLib.csproj": {}
+    "C:\\GIT\\DiscreteMath\\Calculator\\CalculatorLib\\CalculatorLib.csproj": {}
   },
   "projects": {
-    "B:\\GIT\\C#-OOP-Discrete\\DiscreteMath\\Calculator\\CalculatorLib\\CalculatorLib.csproj": {
+    "C:\\GIT\\DiscreteMath\\Calculator\\CalculatorLib\\CalculatorLib.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "B:\\GIT\\C#-OOP-Discrete\\DiscreteMath\\Calculator\\CalculatorLib\\CalculatorLib.csproj",
+        "projectUniqueName": "C:\\GIT\\DiscreteMath\\Calculator\\CalculatorLib\\CalculatorLib.csproj",
         "projectName": "CalculatorLib",
-        "projectPath": "B:\\GIT\\C#-OOP-Discrete\\DiscreteMath\\Calculator\\CalculatorLib\\CalculatorLib.csproj",
+        "projectPath": "C:\\GIT\\DiscreteMath\\Calculator\\CalculatorLib\\CalculatorLib.csproj",
         "packagesPath": "C:\\Users\\Егор\\.nuget\\packages\\",
-        "outputPath": "B:\\GIT\\C#-OOP-Discrete\\DiscreteMath\\Calculator\\CalculatorLib\\obj\\",
+        "outputPath": "C:\\GIT\\DiscreteMath\\Calculator\\CalculatorLib\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -43,8 +42,9 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "direct"
-        }
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -65,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
