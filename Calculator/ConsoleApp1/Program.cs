@@ -1,2 +1,5 @@
-﻿Console.WriteLine("∨, ∧, ¬, ⊕, →, ~, ↓, ↑");
-Console.WriteLine("+, *, ¬, O, →, ~, ↓, ↑");
+﻿using CalculatorLib;
+
+Calculator calculator = new Calculator();
+calculator.InitVariables("(x→y)~(y→z)");
+calculator.InitTruthTable();

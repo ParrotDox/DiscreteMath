@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {}
+    "net8.0": {
+      "CalculatorLib/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/CalculatorLib.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CalculatorLib.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "CalculatorLib/1.0.0": {
+      "type": "project",
+      "path": "../CalculatorLib/CalculatorLib.csproj",
+      "msbuildProject": "../CalculatorLib/CalculatorLib.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net8.0": []
+    "net8.0": [
+      "CalculatorLib >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Егор\\.nuget\\packages\\": {},
@@ -14,11 +33,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\GIT\\DiscreteMath\\Calculator\\ConsoleApp1\\ConsoleApp1.csproj",
-      "projectName": "ConsoleApp1",
-      "projectPath": "C:\\GIT\\DiscreteMath\\Calculator\\ConsoleApp1\\ConsoleApp1.csproj",
+      "projectUniqueName": "B:\\GIT\\C#-OOP-Discrete\\DiscreteMath\\Calculator\\ConsoleApp1\\Main.csproj",
+      "projectName": "Main",
+      "projectPath": "B:\\GIT\\C#-OOP-Discrete\\DiscreteMath\\Calculator\\ConsoleApp1\\Main.csproj",
       "packagesPath": "C:\\Users\\Егор\\.nuget\\packages\\",
-      "outputPath": "C:\\GIT\\DiscreteMath\\Calculator\\ConsoleApp1\\obj\\",
+      "outputPath": "B:\\GIT\\C#-OOP-Discrete\\DiscreteMath\\Calculator\\ConsoleApp1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -33,12 +52,17 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "B:\\GIT\\C#-OOP-Discrete\\DiscreteMath\\Calculator\\CalculatorLib\\CalculatorLib.csproj": {
+              "projectPath": "B:\\GIT\\C#-OOP-Discrete\\DiscreteMath\\Calculator\\CalculatorLib\\CalculatorLib.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -49,9 +73,8 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "all"
-      },
-      "SdkAnalysisLevel": "9.0.100"
+        "auditMode": "direct"
+      }
     },
     "frameworks": {
       "net8.0": {
@@ -72,7 +95,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

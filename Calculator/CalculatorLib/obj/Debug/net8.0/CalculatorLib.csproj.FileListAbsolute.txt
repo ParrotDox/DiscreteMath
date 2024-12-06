@@ -1,0 +1,12 @@
+B:\GIT\C#-OOP-Discrete\DiscreteMath\Calculator\CalculatorLib\bin\Debug\net8.0\CalculatorLib.deps.json
+B:\GIT\C#-OOP-Discrete\DiscreteMath\Calculator\CalculatorLib\bin\Debug\net8.0\CalculatorLib.dll
+B:\GIT\C#-OOP-Discrete\DiscreteMath\Calculator\CalculatorLib\bin\Debug\net8.0\CalculatorLib.pdb
+B:\GIT\C#-OOP-Discrete\DiscreteMath\Calculator\CalculatorLib\obj\Debug\net8.0\CalculatorLib.GeneratedMSBuildEditorConfig.editorconfig
+B:\GIT\C#-OOP-Discrete\DiscreteMath\Calculator\CalculatorLib\obj\Debug\net8.0\CalculatorLib.AssemblyInfoInputs.cache
+B:\GIT\C#-OOP-Discrete\DiscreteMath\Calculator\CalculatorLib\obj\Debug\net8.0\CalculatorLib.AssemblyInfo.cs
+B:\GIT\C#-OOP-Discrete\DiscreteMath\Calculator\CalculatorLib\obj\Debug\net8.0\CalculatorLib.csproj.CoreCompileInputs.cache
+B:\GIT\C#-OOP-Discrete\DiscreteMath\Calculator\CalculatorLib\obj\Debug\net8.0\CalculatorLib.sourcelink.json
+B:\GIT\C#-OOP-Discrete\DiscreteMath\Calculator\CalculatorLib\obj\Debug\net8.0\CalculatorLib.dll
+B:\GIT\C#-OOP-Discrete\DiscreteMath\Calculator\CalculatorLib\obj\Debug\net8.0\refint\CalculatorLib.dll
+B:\GIT\C#-OOP-Discrete\DiscreteMath\Calculator\CalculatorLib\obj\Debug\net8.0\CalculatorLib.pdb
+B:\GIT\C#-OOP-Discrete\DiscreteMath\Calculator\CalculatorLib\obj\Debug\net8.0\ref\CalculatorLib.dll
