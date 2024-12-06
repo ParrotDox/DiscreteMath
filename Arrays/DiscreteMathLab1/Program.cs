@@ -139,18 +139,6 @@ namespace DiscreteMathLab1
 }
 class SetList
 {
-    /*
-    createUniSet, //2
-    createCustomSet, //3
-    checkElement, //4
-    checkEntrance, //5
-    Intersection, //6
-    Union, //7
-    Difference, //8
-    SymmetricDifference, //9
-    Complement //10
-    Print //11
-     */
     public Node head;
     public int nodeCtr;
     public List<int> uniSet;

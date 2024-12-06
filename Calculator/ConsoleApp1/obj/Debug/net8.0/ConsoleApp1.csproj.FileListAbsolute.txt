@@ -1,0 +1,15 @@
+B:\GIT\C#-OOP-Discrete\DiscreteMath\Calculator\ConsoleApp1\bin\Debug\net8.0\ConsoleApp1.exe
+B:\GIT\C#-OOP-Discrete\DiscreteMath\Calculator\ConsoleApp1\bin\Debug\net8.0\ConsoleApp1.deps.json
+B:\GIT\C#-OOP-Discrete\DiscreteMath\Calculator\ConsoleApp1\bin\Debug\net8.0\ConsoleApp1.runtimeconfig.json
+B:\GIT\C#-OOP-Discrete\DiscreteMath\Calculator\ConsoleApp1\bin\Debug\net8.0\ConsoleApp1.dll
+B:\GIT\C#-OOP-Discrete\DiscreteMath\Calculator\ConsoleApp1\bin\Debug\net8.0\ConsoleApp1.pdb
+B:\GIT\C#-OOP-Discrete\DiscreteMath\Calculator\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.GeneratedMSBuildEditorConfig.editorconfig
+B:\GIT\C#-OOP-Discrete\DiscreteMath\Calculator\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.AssemblyInfoInputs.cache
+B:\GIT\C#-OOP-Discrete\DiscreteMath\Calculator\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.AssemblyInfo.cs
+B:\GIT\C#-OOP-Discrete\DiscreteMath\Calculator\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.csproj.CoreCompileInputs.cache
+B:\GIT\C#-OOP-Discrete\DiscreteMath\Calculator\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.sourcelink.json
+B:\GIT\C#-OOP-Discrete\DiscreteMath\Calculator\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.dll
+B:\GIT\C#-OOP-Discrete\DiscreteMath\Calculator\ConsoleApp1\obj\Debug\net8.0\refint\ConsoleApp1.dll
+B:\GIT\C#-OOP-Discrete\DiscreteMath\Calculator\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.pdb
+B:\GIT\C#-OOP-Discrete\DiscreteMath\Calculator\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.genruntimeconfig.cache
+B:\GIT\C#-OOP-Discrete\DiscreteMath\Calculator\ConsoleApp1\obj\Debug\net8.0\ref\ConsoleApp1.dll
