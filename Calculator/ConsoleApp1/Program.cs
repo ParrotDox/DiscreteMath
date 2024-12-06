@@ -1,5 +1,6 @@
 ﻿using CalculatorLib;
 
+//Operations: +, *, ¬, O, →, ~, ↓, ↑
 Calculator calculator = new Calculator();
-calculator.InitVariables("(x→y)~(y→z)");
+calculator.InitVariables("x→y");
 calculator.InitTruthTable();
