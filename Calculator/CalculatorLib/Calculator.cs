@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using System.Windows.Markup;
 
 namespace CalculatorLib
@@ -8,15 +9,18 @@ namespace CalculatorLib
         //Operations:∨, ∧, ¬, ⊕, →, ~, ↓, ↑
         //Operations: +, *, ¬, O, →, ~, ↓, ↑
         //Example: (x → y) ~ (y → z)
-        string equation = "x→y";
+        string equation = "(x→y)~(y→z)";
         char[] operations = new char[] { '+', '*', '¬', 'O', '→', '~', '↓', '↑' };
         char[] varLetters = new char[] { 'x', 'y', 'z' };
         List<char> variables;
         string[,] truthTable;
+        string PDNF;
+        string PCNF;
 
         //[CORRECTNESS CHECKERS]
         public bool CheckBrackets(string eq)
         {
+            //!!!USE InitEquation before using this method!!!
             //Method is used to check the correctness of the equation brackets
             int balance = 0;
             foreach (char letter in eq)
@@ -99,6 +103,7 @@ namespace CalculatorLib
         }
         public bool Simplify(string valuesOfVariables) 
         {
+            //!!!USE InitVariables before using this method!!!
             //Method gets rid of brackets, simplifying the equation and returning result of the equation
             //  Example of what we send: (1→0)~(0→1)
             //      Replacing vars with values
@@ -132,59 +137,222 @@ namespace CalculatorLib
         }
         public string[,] InitTruthTable() 
         {
+            //!!!USE InitVariables before using this method!!!
             //Method is used to create a truth table and return it
+            //Method bases on variables var and equation var in this class
             //  One +row is for header
             int rows = 1 + (1 * (int)Math.Pow(2, variables.Count));
             //  One +column is for result
             int columns = variables.Count + 1;
 
 
-            string[,] temp = new string[rows, columns];
+            string[,] tempTable = new string[rows, columns];
             byte bCtr = 0;
             
             //Iterating through table
             for(int row = 0; row < rows; ++row) 
             {
-                for(int col = 0; col < columns; ++col) 
+                for (int col = 0; col < columns; ++col)
                 {
                     //Filling the header of the table
                     //  filling variables (X | Y | Z)
-                    if(row == 0 && col != columns - 1) 
+                    if (row == 0 && col != columns - 1)
                     {
-                        temp[row, col] = variables[col].ToString();
+                        tempTable[row, col] = variables[col].ToString();
                     }
                     //  filling equation cell (x→y)
-                    if (row == 0 && col == columns - 1) 
+                    if (row == 0 && col == columns - 1)
                     {
-                        temp[row, col] = equation;
+                        tempTable[row, col] = equation;
                     }
                     //  filling variables variation (0 | 0 | 0)
                     //  filling variables variation (0 | 0 | 1)
                     //  filling variables variation (0 | 1 | 0)
                     //  ...
-                    if (row != 0 && col != columns - 1) 
+                    if (row != 0 && col != columns - 1)
                     {
                         // 10 -> "10"
                         string bStr = Convert.ToString(bCtr, 2);
                         // "10" -> "010"
                         bStr = bStr.PadLeft(variables.Count, '0');
-                        temp[row, col] = bStr[col].ToString();
+                        tempTable[row, col] = bStr[col].ToString();
                     }
                     //  filling results
-                    if (row != 0 && col == columns - 1) 
+                    if (row != 0 && col == columns - 1)
                     {
                         // 10 -> "10"
                         string bStr = Convert.ToString(bCtr, 2);
                         // "10" -> "010"
                         bStr = bStr.PadLeft(variables.Count, '0');
-                        temp[row, col] = Convert.ToString(Simplify(bStr));
+                        tempTable[row, col] = Convert.ToString(Simplify(bStr));
                     }
+                    Console.Write($"{tempTable[row, col]} |");
                 }
                 //Increment the byte value (000 -> 001 -> 010 -> 011 etc.)
                 if (row >= 1)
                     bCtr += 1;
+                Console.Write($"\n");
             }
-            return temp;
+            truthTable = tempTable;
+            return tempTable;
+        }
+        public string GetPDNF() 
+        {
+            //Method is used to form a PDNF
+            //Method bases on truthTable var and variables var in this class
+
+            //  Iterating through result column to find "true results"
+            List<int> trueRows = new List<int>();
+            int resultCol = truthTable.GetLength(1) - 1;
+            for(int row = 1; row < truthTable.GetLength(0); ++row) 
+            {
+                if (truthTable[row, resultCol] == "True") 
+                {
+                    //Adding index of "true" row
+                    trueRows.Add(row);
+                }
+            }
+
+            //  Iterating through trueRows to form a PDNF
+            string tempPDNF = "";
+            foreach (int row in trueRows) 
+            {
+                //Iterating through columns except result column (-1)
+                for (int col = 0; col < truthTable.GetLength(1) - 1; ++col)
+                {
+                    //Checking if the value row is the last in the trueRows (for example trueRows = [1,5,7], if we are on 7, then "checkIfLastRow = true")
+                    bool IfLastRow = trueRows.IndexOf(row) == trueRows.Count - 1 ? true : false;
+                    //Checking if the value column is the last in the table column (for example X|Y|Z, if we are on Z, then "bool checkIfLastCol = true")
+                    bool IfLastCol = col == truthTable.GetLength(1) - 2 ? true : false;
+                    //Checking is the value "1" or "0" in the table cell
+                    bool isTrue = false;
+                    if (truthTable[row, col] == "1")
+                        isTrue = true;
+
+                    if (!IfLastCol) 
+                    {
+                        if (isTrue)
+                            //result: x*
+                            tempPDNF += variables[col] + "*";
+                        else
+                            //result: ¬x*
+                            tempPDNF += "¬" + variables[col] + "*";
+                    }    
+                    else 
+                    {
+                        if (!IfLastRow) 
+                        {
+                            if (isTrue)
+                                //result: x+
+                                tempPDNF += variables[col] + "+";
+                            else
+                                //result: ¬x+
+                                tempPDNF += "¬" + variables[col] + "+";
+                        }
+                        else 
+                        {
+                            if (isTrue)
+                                //result: x
+                                tempPDNF += variables[col];
+                            else
+                                //
+                                tempPDNF += "¬" + variables[col];
+                        }
+                    }
+                }
+            }
+            /*
+            Console.WriteLine(tempPDNF);
+            Console.WriteLine("Done");
+            */
+            PDNF = tempPDNF;
+            return tempPDNF;
+        }
+        public string GetPCNF() 
+        {
+            //Method is used to form a PCNF
+            //Method bases on truthTable var and variables var in this class
+
+            //  Iterating through result column to find "false results"
+            List<int> falseRows = new List<int>();
+            int resultCol = truthTable.GetLength(1) - 1;
+            for (int row = 1; row < truthTable.GetLength(0); ++row)
+            {
+                if (truthTable[row, resultCol] == "False")
+                {
+                    //Adding index of "false" row
+                    falseRows.Add(row);
+                }
+            }
+
+            //  Iterating through falseRows to form a PCNF
+            string tempPCNF = "";
+            foreach (int row in falseRows)
+            {
+                //Iterating through columns except result column (-1)
+                for (int col = 0; col < truthTable.GetLength(1) - 1; ++col)
+                {
+                    //Checking if the value row is the last in the trueRows (for example trueRows = [1,5,7], if we are on 7, then "checkIfLastRow = true")
+                    bool IfLastRow = falseRows.IndexOf(row) == falseRows.Count - 1 ? true : false;
+                    //Checking if the value column is the last in the table column (for example X|Y|Z, if we are on Z, then "bool checkIfLastCol = true")
+                    bool IfLastCol = col == truthTable.GetLength(1) - 2 ? true : false;
+                    //Checking is the value "1" or "0" in the table cell
+                    bool isTrue = false;
+                    if (truthTable[row, col] == "1")
+                        isTrue = true;
+
+                    if (!IfLastCol)
+                    {
+                        if (isTrue)
+                            //result: x*
+                            tempPCNF += variables[col] + "*";
+                        else
+                            //result: ¬x*
+                            tempPCNF += "¬" + variables[col] + "*";
+                    }
+                    else
+                    {
+                        if (!IfLastRow)
+                        {
+                            if (isTrue)
+                                //result: x+
+                                tempPCNF += variables[col] + "+";
+                            else
+                                //result: ¬x+
+                                tempPCNF += "¬" + variables[col] + "+";
+                        }
+                        else
+                        {
+                            if (isTrue)
+                                //result: x
+                                tempPCNF += variables[col];
+                            else
+                                //
+                                tempPCNF += "¬" + variables[col];
+                        }
+                    }
+                }
+            }
+
+            //Now when we have equation formed on false results we have to negatiate all equation
+            //  Replacing operations according to De-morgan
+            tempPCNF = tempPCNF.Replace("*", "#");
+            tempPCNF = tempPCNF.Replace("+", "*");
+            tempPCNF = tempPCNF.Replace("#", "+");
+
+            foreach (char variable in variables) 
+            {
+                string varToStr = variable.ToString();
+                tempPCNF = tempPCNF.Replace("¬"+ varToStr, "#");
+                tempPCNF = tempPCNF.Replace(varToStr, "¬"+varToStr);
+                tempPCNF = tempPCNF.Replace("#", varToStr);
+            }
+            /*
+            Console.WriteLine(tempPCNF);
+            Console.WriteLine("Done");
+            */
+            PCNF = tempPCNF;
+            return tempPCNF;
         }
     }
 }
