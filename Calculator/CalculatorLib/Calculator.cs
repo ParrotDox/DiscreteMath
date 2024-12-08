@@ -9,13 +9,14 @@ namespace CalculatorLib
         //Operations:∨, ∧, ¬, ⊕, →, ~, ↓, ↑
         //Operations: +, *, ¬, O, →, ~, ↓, ↑
         //Example: (x → y) ~ (y → z)
-        string equation = "(x→y)~(y→z)";
+        string equation = "(x→y)O(z~y)";
         char[] operations = new char[] { '+', '*', '¬', 'O', '→', '~', '↓', '↑' };
-        char[] varLetters = new char[] { 'x', 'y', 'z' };
+        char[] varLetters = new char[] { 'x', 'y', 'z', 'k', 'r' };
         List<char> variables;
         string[,] truthTable;
         string PDNF;
         string PCNF;
+        string MDNF;
 
         //[CORRECTNESS CHECKERS]
         public bool CheckBrackets(string eq)
@@ -353,6 +354,75 @@ namespace CalculatorLib
             */
             PCNF = tempPCNF;
             return tempPCNF;
+        }
+        public string GetMDNF()
+        {
+            //Method is used to form a MDNF
+            //Method bases on truthTable var and variables var in this class
+
+            //  Iterating through result column to find "true results"
+            List<int> trueRows = new List<int>();
+            int resultCol = truthTable.GetLength(1) - 1;
+            for (int row = 1; row < truthTable.GetLength(0); ++row)
+            {
+                if (truthTable[row, resultCol] == "True")
+                {
+                    //Adding index of "true" row
+                    trueRows.Add(row);
+                }
+            }
+
+            //  Iterating through true rows to form a MDNF
+            string tempMDNF = "";
+            for (int trueRow = 0; trueRow < trueRows.Count - 1; ++trueRow)
+            {
+                //Getting the term (For exampe ¬x¬yz from table is 001)
+                string tempTerm = "";
+                for (int col = 0; col < truthTable.GetLength(1) - 1; ++col)
+                {
+                    tempTerm += truthTable[trueRows[trueRow], col];
+                }
+                //Now we are iterating through next trueRows to find correct combinations of gluing
+                for (int trueRowNext = trueRow + 1; trueRowNext < trueRows.Count; ++trueRowNext)
+                {
+                    //Getting the term2 (For exampe x¬yz from table is 101)
+                    string tempTerm2 = "";
+                    for (int col = 0; col < truthTable.GetLength(1) - 1; ++col)
+                    {
+                        tempTerm2 += truthTable[trueRows[trueRowNext], col];
+                    }
+                    //Now we have to compare terms and find out do they equal except 1 part
+                    //(001 and 101 match the condition because of the -01 at the end are equal except 0-- and 1-- at the start)
+                    int countNonEqualParts = 0;
+                    for (int i = 0; i < truthTable.GetLength(1) - 1; ++i)
+                    {
+                        if (tempTerm[i] != tempTerm2[i])
+                        {
+                            ++countNonEqualParts;
+                        }
+                    }
+                    //If the difference between the term length and equal parts is only one, then this is the match
+                    if (countNonEqualParts == 1) 
+                    {
+                        for (int i = 0; i < truthTable.GetLength(1) - 1; ++i)
+                        {
+                            if (tempTerm[i] == tempTerm2[i])
+                            {
+                                if (tempTerm[i] == '1')
+                                    tempMDNF += variables[i] + "*";
+                                else
+                                    tempMDNF += "¬" + variables[i] + "*";
+                            }
+                        }
+                        tempMDNF += "+";
+                    }
+                }
+            }
+            if (tempMDNF.Length != 0)
+                tempMDNF = tempMDNF.Substring(0, tempMDNF.Length - 2);
+
+            MDNF = tempMDNF;
+            return tempMDNF;
         }
     }
 }

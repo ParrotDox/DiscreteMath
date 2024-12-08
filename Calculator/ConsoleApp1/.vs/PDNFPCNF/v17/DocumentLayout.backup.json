@@ -3,11 +3,11 @@
   "WorkspaceRootPath": "B:\\GIT\\C#-OOP-Discrete\\DiscreteMath\\Calculator\\ConsoleApp1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0BA642BB-3E9E-4EFD-92D6-8E0D3ECB2886}|..\\CalculatorLib\\CalculatorLib.csproj|b:\\git\\c#-oop-discrete\\discretemath\\calculator\\calculatorlib\\calculator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{75C465FA-4096-4560-B8B1-72FA687B53BB}|Main.csproj|b:\\git\\c#-oop-discrete\\discretemath\\calculator\\consoleapp1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{75C465FA-4096-4560-B8B1-72FA687B53BB}|Main.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0BA642BB-3E9E-4EFD-92D6-8E0D3ECB2886}|..\\CalculatorLib\\CalculatorLib.csproj|b:\\git\\c#-oop-discrete\\discretemath\\calculator\\calculatorlib\\calculator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -17,30 +17,30 @@
       "DocumentGroups": [
         {
           "DockedWidth": 836,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "B:\\GIT\\C#-OOP-Discrete\\DiscreteMath\\Calculator\\ConsoleApp1\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "B:\\GIT\\C#-OOP-Discrete\\DiscreteMath\\Calculator\\ConsoleApp1\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-06T19:45:03.256Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Calculator.cs",
               "DocumentMoniker": "B:\\GIT\\C#-OOP-Discrete\\DiscreteMath\\Calculator\\CalculatorLib\\Calculator.cs",
               "RelativeDocumentMoniker": "..\\CalculatorLib\\Calculator.cs",
               "ToolTip": "B:\\GIT\\C#-OOP-Discrete\\DiscreteMath\\Calculator\\CalculatorLib\\Calculator.cs",
               "RelativeToolTip": "..\\CalculatorLib\\Calculator.cs",
-              "ViewState": "AgIAAKAAAAAAAAAAAAAcwMEAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-06T18:45:28.368Z",
               "EditorCaption": ""
