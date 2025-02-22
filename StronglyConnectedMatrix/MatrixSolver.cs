@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace StronglyConnectedMatrix
 {
@@ -131,43 +132,37 @@ namespace StronglyConnectedMatrix
         }
 
         //Uses Strong Connectivity matrix as sample
-        public static List<List<int>> SCC(Matrix sample) 
+        public static List<List<int>> SCM(Matrix sample) 
         {
             Matrix strong_connectivity_matrix = new Matrix(sample);
             bool[] isCellVisited = new bool[sample.Size];
 
             List<List<int>> components = new List<List<int>>();
 
-            for (int i = 0; i < sample.Size; i++)
+            for(int i = 0; i < sample.Size; ++i) 
             {
                 //If vertex is not visited, then looking for strong connectivity component
                 if (!isCellVisited[i])
                 {
                     List<int> component = new List<int>();
 
-                    //If vertex can be reached, adding it to component
-                    DFS(strong_connectivity_matrix, i, isCellVisited, component);
-
-                    //Adding result component to component list
+                    for(int j = 0; j < sample.Size; ++j) 
+                    {
+                        //If cell isn't visited and equal 1
+                        if (!isCellVisited[j] && strong_connectivity_matrix.matrix[i, j] == 1) 
+                        {
+                            component.Add(j);
+                            isCellVisited[j] = true;
+                        }    
+                    }
                     components.Add(component);
                 }
             }
-
             return components;
         }
-        private static void DFS(Matrix graph, int vertex, bool[] visited, List<int> component)
-        {
-            visited[vertex] = true; //Marking vertex as visited
-            component.Add(vertex);  //Adding vertex to component
-
-            //Iterating through neighbours of vertex
-            for (int i = 0; i < graph.Size; i++)
-            {
-                if (graph.matrix[vertex, i] == 1 && !visited[i]) //If connection exists and it's not marked as visited
-                {
-                    DFS(graph, i, visited, component); //Continue recursion
-                }
-            }
-        }
+    }
+    public class MatrixFiler 
+    {
+        public List<Matrix> matrixes;
     }
 }
