@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("StronglyConnectedMatrix")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5a00745859f2c741953bce1867f488b3b27d2fa6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+005945e36e0acf41e023cc401694d1d4a85b2442")]
 [assembly: System.Reflection.AssemblyProductAttribute("StronglyConnectedMatrix")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StronglyConnectedMatrix")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

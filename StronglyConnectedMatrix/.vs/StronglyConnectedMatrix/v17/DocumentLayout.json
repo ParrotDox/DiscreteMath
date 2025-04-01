@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "B:\\GIT\\DiscreteMath\\StronglyConnectedMatrix\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{E3C1797F-452B-4AD6-9465-7957FFFD6A80}|StronglyConnectedMatrix.csproj|b:\\git\\discretemath\\stronglyconnectedmatrix\\stronglyconnectedmatrix.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{E3C1797F-452B-4AD6-9465-7957FFFD6A80}|StronglyConnectedMatrix.csproj|solutionrelative:stronglyconnectedmatrix.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E3C1797F-452B-4AD6-9465-7957FFFD6A80}|StronglyConnectedMatrix.csproj|b:\\git\\discretemath\\stronglyconnectedmatrix\\matrixsolver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E3C1797F-452B-4AD6-9465-7957FFFD6A80}|StronglyConnectedMatrix.csproj|solutionrelative:matrixsolver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -18,28 +22,41 @@
       "DocumentGroups": [
         {
           "DockedWidth": 836,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StronglyConnectedMatrix",
+              "DocumentMoniker": "B:\\GIT\\DiscreteMath\\StronglyConnectedMatrix\\StronglyConnectedMatrix.csproj",
+              "RelativeDocumentMoniker": "StronglyConnectedMatrix.csproj",
+              "ToolTip": "B:\\GIT\\DiscreteMath\\StronglyConnectedMatrix\\StronglyConnectedMatrix.csproj*",
+              "RelativeToolTip": "StronglyConnectedMatrix.csproj*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-03-27T16:53:08.423Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MatrixSolver.cs",
               "DocumentMoniker": "B:\\GIT\\DiscreteMath\\StronglyConnectedMatrix\\MatrixSolver.cs",
               "RelativeDocumentMoniker": "MatrixSolver.cs",
               "ToolTip": "B:\\GIT\\DiscreteMath\\StronglyConnectedMatrix\\MatrixSolver.cs",
               "RelativeToolTip": "MatrixSolver.cs",
-              "ViewState": "AgIAAAkCAAAAAAAAAADwvyMCAABQAAAAAAAAAA==",
+              "ViewState": "AgIAANsAAAAAAAAAAAAIwDwBAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-21T11:09:57.114Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "B:\\GIT\\DiscreteMath\\StronglyConnectedMatrix\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",

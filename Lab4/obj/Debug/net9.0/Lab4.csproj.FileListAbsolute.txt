@@ -1,0 +1,15 @@
+B:\GIT\DiscreteMath\Lab4\obj\Debug\net9.0\Lab4.GeneratedMSBuildEditorConfig.editorconfig
+B:\GIT\DiscreteMath\Lab4\obj\Debug\net9.0\Lab4.AssemblyInfoInputs.cache
+B:\GIT\DiscreteMath\Lab4\obj\Debug\net9.0\Lab4.AssemblyInfo.cs
+B:\GIT\DiscreteMath\Lab4\obj\Debug\net9.0\Lab4.csproj.CoreCompileInputs.cache
+B:\GIT\DiscreteMath\Lab4\obj\Debug\net9.0\Lab4.sourcelink.json
+B:\GIT\DiscreteMath\Lab4\bin\Debug\net9.0\Lab4.exe
+B:\GIT\DiscreteMath\Lab4\bin\Debug\net9.0\Lab4.deps.json
+B:\GIT\DiscreteMath\Lab4\bin\Debug\net9.0\Lab4.runtimeconfig.json
+B:\GIT\DiscreteMath\Lab4\bin\Debug\net9.0\Lab4.dll
+B:\GIT\DiscreteMath\Lab4\bin\Debug\net9.0\Lab4.pdb
+B:\GIT\DiscreteMath\Lab4\obj\Debug\net9.0\Lab4.dll
+B:\GIT\DiscreteMath\Lab4\obj\Debug\net9.0\refint\Lab4.dll
+B:\GIT\DiscreteMath\Lab4\obj\Debug\net9.0\Lab4.pdb
+B:\GIT\DiscreteMath\Lab4\obj\Debug\net9.0\Lab4.genruntimeconfig.cache
+B:\GIT\DiscreteMath\Lab4\obj\Debug\net9.0\ref\Lab4.dll

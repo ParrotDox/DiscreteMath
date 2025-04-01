@@ -310,7 +310,7 @@ namespace StronglyConnectedMatrix
                     //Getting list from json file even if it is empty (empty != null)
                     matrixes = JsonSerializer.Deserialize<List<Matrix>>(fs);
                 }
-                catch (JsonException) 
+                catch (JsonException e) 
                 {
                     //Creating new list if file contains null value
                     Console.WriteLine("GetMatrixFile: List is null. Calling SetMatrixFile.");
