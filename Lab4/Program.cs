@@ -1,3 +1,4 @@
 ﻿using Lab4;
 
-MatrixSolver mtxS = new MatrixSolver();
+MatrixUI ui =  new MatrixUI();
+ui.Menu();
